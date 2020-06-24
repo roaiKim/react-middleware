@@ -6,6 +6,9 @@ const ForkTSCheckerPlugin = require("fork-ts-checker-webpack-plugin");
 const TSImportPlugin = require("ts-import-plugin");
 
 const config = {
+    devServer: {
+        port: 3000
+    },
     mode: "development",
     entry: ["webpack-dev-server/client?http://0.0.0.0:3000", "webpack/hot/dev-server", `${env.src}/index.tsx`],
     output: {

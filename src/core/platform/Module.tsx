@@ -1,47 +1,23 @@
 import {push, replace} from "connected-react-router";
 import {Location} from "history";
 import {app} from "../app";
-import {LifecycleDecoratorFlag, TickIntervalDecoratorFlag} from "../module";
+import {LifecycleDecoratorFlag} from "../module";
 import {setStateAction, State} from "../reducer";
 
 export interface ModuleLifecycleListener<RouteParam extends {} = {}, HistoryState extends {} = {}> {
     onRegister: (() => void) & LifecycleDecoratorFlag;
     onRender: ((routeParameters: RouteParam, location: Location<HistoryState | undefined>) => void) & LifecycleDecoratorFlag;
     onDestroy: (() => void) & LifecycleDecoratorFlag;
-    onTick: (() => void) & LifecycleDecoratorFlag & TickIntervalDecoratorFlag;
 }
 
 export class Module<ModuleState extends {}, RouteParam extends {} = {}, HistoryState extends {} = {}, RootState extends State = State> implements ModuleLifecycleListener<RouteParam, HistoryState> {
     public constructor(public readonly name: string, private readonly initialState: ModuleState) {}
 
-    onRegister() {
-        /**
-         * Called when the module is registered the first time
-         * Usually used for fetching configuration
-         */
-    }
+    onRegister() { }
 
-    onRender(routeParameters: RouteParam, location: Location<HistoryState | undefined>) {
-        /**
-         * Called when the attached component is in either case:
-         * - Initially mounted
-         * - Re-rendered due to location updates (only for route connected components)
-         */
-    }
+    onRender(routeParameters: RouteParam, location: Location<HistoryState | undefined>) { }
 
-    onDestroy() {
-        /**
-         * Called when the attached component is going to unmount
-         */
-    }
-
-    onTick() {
-        /**
-         * Called periodically during the lifecycle of attached component
-         * Usually used together with @Interval decorator, to specify the period (in second)
-         * Attention: The next tick will not be triggered, until the current tick has finished
-         */
-    }
+    onDestroy() { }
 
     protected get state(): Readonly<ModuleState> {
         return this.rootState.app[this.name];

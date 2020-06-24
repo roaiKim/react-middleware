@@ -24,7 +24,7 @@ module.exports = {
     static: resolve("static"),
     conf: confPath(),
     tsConfig: resolve("tsconfig.json"),
-    eslintConfig: resolve(".eslintrc.json"),
+    eslintConfig: resolve(".eslintrc.js"),
     stylelintConfig: resolve(".stylelintrc.json"),
     profile: profile,
 };

@@ -1,6 +1,6 @@
 import {connectRouter} from "connected-react-router";
 import {History} from "history";
-import {Action as ReduxAction, combineReducers, Reducer, Store, Dispatch, AnyAction} from "redux";
+import {Action as ReduxAction, combineReducers, Reducer, Store, Dispatch, AnyAction, Middleware} from "redux";
 import {State, LoadingState} from "./type";
 import {app} from "./app";
 
@@ -74,11 +74,11 @@ export function showLoading(state: State, identifier: string = "global") {
     return state.loading[identifier] > 0;
 }
 
-export const executeMethod = (store: Store<State>) => (next: Dispatch<AnyAction>) => (action: Action<any>) => {
+export const executeMethodMiddleware: Middleware = ((store: Store<State>) => (next: Dispatch<AnyAction>) => (action: Action<any>) => {
     const result = next(action);
     const handler = app.actionHandlers[action.type];
     if (!!handler) {
         handler(...action.payload);
     }
     return result;
-};
+}) as Middleware

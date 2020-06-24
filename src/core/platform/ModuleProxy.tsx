@@ -27,7 +27,6 @@ export class ModuleProxy<M extends Module<any>> {
 
             constructor(props: P) {
                 super(props);
-                console.info(`Module [${moduleName}] attached component initially rendered`);
                 this.lifecycleSaga();
             }
 
@@ -36,7 +35,6 @@ export class ModuleProxy<M extends Module<any>> {
                 const currentLocation = (this.props as any).location;
                 const currentRouteParams = (this.props as any).match ? (this.props as any).match.params : null;
                 if (currentLocation && currentRouteParams && prevLocation !== currentLocation && lifecycleListener.onRender.isLifecycle) {
-                    // Only trigger if current component is connected to <Route>
                     app.store.dispatch(actions.onRender(currentRouteParams, currentLocation));
                 }
             }
@@ -49,8 +47,6 @@ export class ModuleProxy<M extends Module<any>> {
                 if (!config.retainStateOnLeave) {
                     app.store.dispatch(setStateAction(moduleName, initialState, `@@${moduleName}/@@reset`));
                 }
-
-                console.info(`Module [${moduleName}] attached component destroyed`);
             }
 
             private async lifecycleSaga() {

@@ -1,14 +1,9 @@
-import {HomeHeroInfo} from "type/api";
-
-export type TabType = "explore" | "plans" | "claims";
+export type TabType = 'a' | 'b' | 'c';
 
 export interface RouteParam {
-    type: TabType;
+  type: TabType;
 }
 
 export interface State {
-    type: TabType | undefined;
-    homeExploreHero: HomeHeroInfo | null;
-    homePlansHero: HomeHeroInfo | null;
-    homeClaimsHero: HomeHeroInfo | null;
+  type: TabType | undefined;
 }

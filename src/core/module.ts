@@ -1,26 +1,16 @@
 import {app} from "./app";
-import {Exception} from "./Exception";
 import {Module, ModuleLifecycleListener} from "./platform/Module";
 import {ModuleProxy} from "./platform/ModuleProxy";
 import {Action, setStateAction} from "./reducer";
-import {ErrorListener} from "./type";
 
 export interface LifecycleDecoratorFlag {
     isLifecycle?: boolean;
 }
 
-export {ErrorListener};
-
-export interface TickIntervalDecoratorFlag {
-    tickInterval?: number;
-}
-
 export type ActionHandler = (...args: any[]) => any;
 
-export type ErrorHandler = (error: Exception) => any;
-
 type ActionCreator<H> = H extends (...args: infer P) => any ? ((...args: P) => Action<P>) : never;
-type HandlerKeys<H> = {[K in keyof H]: H[K] extends (...args: any[]) => any ? K : never}[Exclude<keyof H, keyof ModuleLifecycleListener | keyof ErrorListener>];
+type HandlerKeys<H> = {[K in keyof H]: H[K] extends (...args: any[]) => any ? K : never}[Exclude<keyof H, keyof ModuleLifecycleListener>];
 export type ActionCreators<H> = {readonly [K in HandlerKeys<H>]: ActionCreator<H[K]>};
 
 export function register<M extends Module<any>>(module: M): ModuleProxy<M> {
@@ -28,7 +18,6 @@ export function register<M extends Module<any>>(module: M): ModuleProxy<M> {
     if (!app.store.getState().app[moduleName]) {
         const initialState = (module as any).initialState;
         app.store.dispatch(setStateAction(moduleName, initialState, `@@${moduleName}/@@init`));
-        console.info(`Module [${moduleName}] registered`);
     }
 
     const actions: any = {};

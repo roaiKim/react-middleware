@@ -1,17 +1,27 @@
-// import appConfig from "conf/default";
-import { Interval, Lifecycle, Loading, Module, register } from 'core'
+import {
+  Lifecycle, Loading, Module, register,
+} from 'core';
+import { MainService } from 'service/api/MainService';
+import Main from './component';
+import { State } from './type';
 
-// import { CaptchaResponse, ConfigurationAJAXResponse, CurrentUserAJAXView, GameTypeView, LoginAJAXRequest, VerifyCaptchaAJAXResponse } from "type/api";
-// import {LoginRequired, RefreshCaptchaIfError} from "util/decorator";
-import Main from './component'
-import { State } from './type'
+const initialState: State = {
+  user: null,
+};
 
-// import {ModuleLoader} from "service/ModuleLoader";
+class MainModule extends Module<State> {
+  @Lifecycle()
+  onRegister() {
+    this.fetchCurrentuser();
+  }
 
-const initialState: State = {}
+  @Loading('mask')
+  async fetchCurrentuser() {
+    const response = await MainService.fetchCurrentUser();
+    this.setState({ user: response.data.name });
+  }
+}
 
-class MainModule extends Module<State> {}
-
-const module = register(new MainModule('main', initialState))
-export const actions = module.getActions()
-export const MainComponent = module.attachLifecycle(Main)
+const module = register(new MainModule('main', initialState));
+export const actions = module.getActions();
+export const MainComponent = module.attachLifecycle(Main);

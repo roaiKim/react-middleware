@@ -1,50 +1,89 @@
 // loading...
-.spinner {
-  width: 3rem;
-  height: 3rem;
-  position: fixed;
-  transform: translate(calc(50vw - 1.5rem), calc(50vh - 1.5rem));
+#framework-app-root {
+  height: 100%;
+  width: 100%;
+  background: #abb6cb;
 
-  .double-bounce1,
-  .double-bounce2 {
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-    background-color: #1890ff;
-    opacity: 0.6;
-    position: absolute;
+  > main {
+    height: 100%;
+    width: 100%;
+
+    > section {
+      width: 100%;
+      height: 100%;
+      display: flex;
+
+      .ro-menu-wrap {
+        background: #001529;
+      }
+
+      .ro-main-wrap {
+        flex-grow: 1;
+        padding: 20px;
+      }
+    }
+  }
+}
+
+.spinner-wrap {
+  &.spinner-wrap-true {
+    position: fixed;
+    z-index: 999;
     top: 0;
     left: 0;
-    -webkit-animation: bounce 2s infinite ease-in-out;
-    animation: bounce 2s infinite ease-in-out;
+    right: 0;
+    bottom: 0;
+    background: #fff;
   }
 
-  .double-bounce2 {
-    -webkit-animation-delay: -1s;
-    animation-delay: -1s;
-  }
-}
+  .spinner {
+    width: 3rem;
+    height: 3rem;
+    position: fixed;
+    z-index: 1000;
+    transform: translate(calc(50vw - 1.5rem), calc(50vh - 1.5rem));
 
-@-webkit-keyframes bounce {
-  0%,
-  100% {
-    -webkit-transform: scale(0);
+    .double-bounce1,
+    .double-bounce2 {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      background-color: #1890ff;
+      opacity: 0.6;
+      position: absolute;
+      top: 0;
+      left: 0;
+      -webkit-animation: bounce 2s infinite ease-in-out;
+      animation: bounce 2s infinite ease-in-out;
+    }
+
+    .double-bounce2 {
+      -webkit-animation-delay: -1s;
+      animation-delay: -1s;
+    }
   }
 
-  50% {
-    -webkit-transform: scale(1);
-  }
-}
+  @-webkit-keyframes bounce {
+    0%,
+    100% {
+      -webkit-transform: scale(0);
+    }
 
-@keyframes bounce {
-  0%,
-  100% {
-    transform: scale(0);
-    -webkit-transform: scale(0);
+    50% {
+      -webkit-transform: scale(1);
+    }
   }
 
-  50% {
-    transform: scale(1);
-    -webkit-transform: scale(1);
+  @keyframes bounce {
+    0%,
+    100% {
+      transform: scale(0);
+      -webkit-transform: scale(0);
+    }
+
+    50% {
+      transform: scale(1);
+      -webkit-transform: scale(1);
+    }
   }
 }

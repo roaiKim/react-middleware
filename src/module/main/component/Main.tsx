@@ -1,30 +1,28 @@
-import React from "react";
-import {Switch, Link} from "react-router-dom";
-import {Route, async} from "core";
-import {ModuleLoader} from "service/ModuleLoader";
+import React from 'react';
+import { Switch } from 'react-router-dom';
+import { Route, async } from 'core';
+import { ModuleLoader } from 'service/ModuleLoader';
+import MenuComponent from './Menu';
 
-const Home = async(ModuleLoader.Home, "MainComponent");
-const NoFound1 = async(ModuleLoader.noFound, "MainComponent");
-const NoFound2 = async(ModuleLoader.noFound2, "MainComponent");
+const User = async(ModuleLoader.user, 'MainComponent');
+const NoFound = async(ModuleLoader.noFound, 'MainComponent');
 
 class MainLayout extends React.PureComponent {
-    render() {
-        return (
-            <main>
-                <Switch>
-                    <Route path="/" component={Home} />
-                    <Route path="/:type(explore|plans|claims)?" component={Home} />
-                    <Route path="/hearth/:type(explore|plans|claims)?" component={Home} />
-                    <Route path="/hearth/detail" component={Home} />
-                    <Route path="/hearth/insure" component={Home} />
-                    <Route path="/hearth/order" component={Home} />
-                    <Route path="/hearth/result/:type(success|blacklist|fail)?" component={Home} />
-                    <Route path="/4042" component={NoFound2} />
-                    <Route component={NoFound2} />
-                </Switch>
-            </main>
-        );
-    }
+  render() {
+    return (
+      <section>
+        <section className="ro-menu-wrap">
+          <MenuComponent />
+        </section>
+        <section className="ro-main-wrap">
+          <Switch>
+            <Route path="/(user-management)?" component={User} />
+            <Route component={NoFound} />
+          </Switch>
+        </section>
+      </section>
+    );
+  }
 }
 
 export default MainLayout;
