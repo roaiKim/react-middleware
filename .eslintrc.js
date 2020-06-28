@@ -20,6 +20,12 @@ module.exports = {
         "class-methods-use-this": "off",
         "react/destructuring-assignment": "off",
         "@typescript-eslint/no-explicit-any": "off",
-        "@typescript-eslint/no-non-null-assertion": "off"
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "no-shadow": "off",
+        "react/jsx-fragments": [2, "element"],
+        "object-curly-newline": ["error", {
+            "ImportDeclaration": "never",
+            "ExportDeclaration": { "multiline": true, "minProperties": 3 }
+        }]
     }
 };

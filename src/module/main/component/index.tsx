@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { RootState } from 'type/state';
 import { Switch } from 'react-router-dom';
 import { ModuleLoader } from 'service/ModuleLoader';
+import { ConfigProvider } from 'antd';
 import LoadingComponent from './LoadingComponent';
 import MainLayout from './Main';
 import './index.less';
@@ -22,13 +23,15 @@ class Component extends React.PureComponent<Props> {
     const { showGlobalLoading, currentUser, showMaskLoading } = this.props;
 
     return (
-      <main>
-        {(showGlobalLoading || showMaskLoading) && <LoadingComponent type={showMaskLoading} />}
-        <Switch>
-          <Route path="/login" component={login} />
-          <Route component={currentUser ? MainLayout : login} />
-        </Switch>
-      </main>
+      <ConfigProvider input={{ autoComplete: 'off' }}>
+        <main>
+          {(showGlobalLoading || showMaskLoading) && <LoadingComponent type={showMaskLoading} />}
+          <Switch>
+            <Route path="/login" component={login} />
+            <Route component={currentUser ? MainLayout : login} />
+          </Switch>
+        </main>
+      </ConfigProvider>
     );
   }
 }

@@ -16,8 +16,8 @@ export interface CurrentUserAPIResponse {
   avatar: string;
 }
 
-export interface UserFetchManagement {
-  list: UserManagement[];
+export interface FetchListData<T> {
+  list: T[];
 }
 
 export interface UserManagement {
@@ -26,4 +26,13 @@ export interface UserManagement {
   email: string;
   nickName: string;
   phone: string;
+}
+
+export interface SystemManagement {
+  id: string;
+  name: string;
+  address: string;
+  accessToken: string;
+  array: string;
+  status: boolean;
 }

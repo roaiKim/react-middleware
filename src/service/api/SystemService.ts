@@ -1,8 +1,8 @@
 import { ajax } from 'react-basc'
-import {HomeAPIResponse , FetchListData, UserManagement} from 'type/api'
+import {HomeAPIResponse , FetchListData, SystemManagement} from 'type/api'
 
-export class UserService {
-  static fetchUserManagement (): Promise<HomeAPIResponse<FetchListData<UserManagement>>> {
+export class SystemService {
+  static fetchUserManagement (): Promise<HomeAPIResponse<FetchListData<SystemManagement>>> {
     return new Promise((resolve, reject) => {
       const delay = Math.random() * 1000 + 900
       setTimeout(resolve, delay, {
@@ -12,24 +12,27 @@ export class UserService {
           list: [
             {
               id: '1',
-              name: 'John Brown ty',
-              email: 'roos ',
-              nickName: 'New York No. 1 Lake Park',
-              phone: 'devel---oper',
+              name: '雅典娜',
+              address: 'roos ',
+              accessToken: 'New York No. 1 Lake Park',
+              array: '用户组3',
+              status: true
             },
             {
               id: '2',
-              name: 'John Bro wnds ',
-              email: 'roos ',
-              nickName: 'New Ydsa ork No. 1 Lake Park',
-              phone: 'devel---oper',
+              name: '雅典娜2',
+              address: 'roos 2',
+              accessToken: 'New York No. 1 Lake Park 222',
+              array: '用户组3',
+              status: true
             },
             {
-              id: '4',
-              name: 'John Brown',
-              email: 'roos ',
-              nickName: 'New York No. 1 Lake Park',
-              phone: 'devel---oper',
+              id: '3',
+              name: '雅典娜3',
+              address: 'roos 3',
+              accessToken: 'New York No. 1 Lake Park 333',
+              array: '用户组3',
+              status: true
             },
           ]
         },

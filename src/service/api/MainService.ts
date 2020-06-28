@@ -9,7 +9,7 @@ export class MainService {
         code: 0,
         message: 'ok',
         data: {
-          name: "rosen",
+          name: null,
           avatar: ''
         },
       })

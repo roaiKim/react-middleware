@@ -1,11 +1,11 @@
 import { Module, register, Lifecycle, Loading } from 'react-basc';
-import { UserService } from 'service/api/UserService';
+import { SystemService } from 'service/api/SystemService';
 import { message } from 'antd';
 import Main from './component';
 import { State } from './type';
 
 const initialState: State = {
-  userManagement: null,
+  systemManagement: null,
 };
 
 class MainModule extends Module<State> {
@@ -17,13 +17,13 @@ class MainModule extends Module<State> {
 
   @Loading()
   async fetchUserManagement() {
-    const response = await UserService.fetchUserManagement();
-    this.setState({ userManagement: response.data });
+    const response = await SystemService.fetchUserManagement();
+    this.setState({ systemManagement: response.data });
   }
 
   @Loading()
   async userFreeze(id: string) {
-    const response = await UserService.userFreeze(id);
+    const response = await SystemService.userFreeze(id);
     if (response.code === 0) {
       this.fetchUserManagement();
       message.success('操作成功');
@@ -32,7 +32,7 @@ class MainModule extends Module<State> {
 
   @Loading()
   async userResetPassword(id: string) {
-    const response = await UserService.userFreeze(id);
+    const response = await SystemService.userFreeze(id);
     if (response.code === 0) {
       this.fetchUserManagement();
       message.success('操作成功');
@@ -40,6 +40,6 @@ class MainModule extends Module<State> {
   }
 }
 
-const module = register(new MainModule('userManagement', initialState));
+const module = register(new MainModule('systemManagement', initialState));
 export const actions = module.getActions();
 export const MainComponent = module.attachLifecycle(Main);

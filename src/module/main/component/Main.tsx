@@ -5,6 +5,7 @@ import { ModuleLoader } from 'service/ModuleLoader';
 import MenuComponent from './Menu';
 
 const User = async(ModuleLoader.user, 'MainComponent');
+const System = async(ModuleLoader.system, 'MainComponent');
 const NoFound = async(ModuleLoader.noFound, 'MainComponent');
 
 class MainLayout extends React.PureComponent {
@@ -17,6 +18,7 @@ class MainLayout extends React.PureComponent {
         <section className="ro-main-wrap">
           <Switch>
             <Route path="/(user-management)?" component={User} />
+            <Route path="/system-management" component={System} />
             <Route component={NoFound} />
           </Switch>
         </section>

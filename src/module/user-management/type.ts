@@ -1,5 +1,5 @@
-import { UserFetchManagement } from 'type/api';
+import { FetchListData, UserManagement } from 'type/api';
 
 export interface State {
-  userManagement: UserFetchManagement | null
+  userManagement: FetchListData<UserManagement> | null
 }
