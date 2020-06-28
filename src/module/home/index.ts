@@ -1,4 +1,4 @@
-import { Module, register } from 'core';
+import { Module, register } from 'react-basc';
 import Main from './component';
 import { RouteParam, State } from './type';
 

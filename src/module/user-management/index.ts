@@ -1,6 +1,6 @@
 import {
   Module, register, Lifecycle, Loading,
-} from 'core';
+} from 'react-basc';
 import { UserService } from 'service/api/UserService';
 import { message } from 'antd';
 import Main from './component';

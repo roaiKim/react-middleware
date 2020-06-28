@@ -1,4 +1,4 @@
-import { ajax } from 'core'
+import { ajax } from 'react-basc'
 import { CurrentUserAPIResponse, HomeAPIResponse } from 'type/api'
 
 export class MainService {

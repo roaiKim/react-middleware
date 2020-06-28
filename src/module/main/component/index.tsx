@@ -1,5 +1,5 @@
 import React from 'react';
-import { showLoading, async, Route } from 'core';
+import { showLoading, async, Route } from 'react-basc';
 import { connect } from 'react-redux';
 import { RootState } from 'type/state';
 import { Switch } from 'react-router-dom';

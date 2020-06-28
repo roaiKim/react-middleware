@@ -1,6 +1,6 @@
 import {
   Lifecycle, Loading, Module, register,
-} from 'core';
+} from 'react-basc';
 import { MainService } from 'service/api/MainService';
 import Main from './component';
 import { State } from './type';

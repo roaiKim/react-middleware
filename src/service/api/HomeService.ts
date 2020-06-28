@@ -1,4 +1,4 @@
-import { ajax } from 'core'
+import { ajax } from 'react-basc'
 import { HomeAPIResponse, HomeHeroInfo } from 'type/api'
 
 export class HomeService {
