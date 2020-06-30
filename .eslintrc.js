@@ -26,6 +26,7 @@ module.exports = {
         "object-curly-newline": ["error", {
             "ImportDeclaration": "never",
             "ExportDeclaration": { "multiline": true, "minProperties": 3 }
-        }]
+        }],
+        "max-classes-per-file": "off"
     }
 };

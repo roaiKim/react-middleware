@@ -1,6 +1,4 @@
-import {
-  Lifecycle, Loading, Module, register,
-} from 'react-basc';
+import { Lifecycle, Loading, Module, register } from 'react-basc';
 import { MainService } from 'service/api/MainService';
 import Main from './component';
 import { State } from './type';
@@ -19,6 +17,11 @@ class MainModule extends Module<State> {
   async fetchCurrentuser() {
     const response = await MainService.fetchCurrentUser();
     this.setState({ user: response.data.name });
+  }
+
+  @Loading('mask')
+  async setCurrentuser(name: string) {
+    this.setState({ user: name });
   }
 }
 
