@@ -1,17 +1,11 @@
 import React from 'react';
 import { Form, Input, Button, Checkbox } from 'antd';
 import './index.less';
-import { Store } from 'rc-field-form/lib/interface.d';
-import { connect, DispatchProp } from 'react-redux';
+import { connect } from 'react-redux';
 import { actions } from 'module/main';
-
-export interface LoginAJAXRequest {
-  username: string;
-  password: string;
-}
-
-class Main extends React.PureComponent<DispatchProp> {
-  submit = (value: Store) => {
+ 
+class Main extends React.PureComponent {
+  submit = (value) => {
     //
     this.props.dispatch(actions.setCurrentuser(value.username));
   };

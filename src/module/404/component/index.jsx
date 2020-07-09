@@ -2,11 +2,8 @@ import React from 'react';
 import { Result, Button } from 'antd';
 import { actions } from 'module/404';
 import './index.less';
-import { DispatchProp } from 'react-redux';
 
-type Props = DispatchProp;
-
-class Main extends React.PureComponent<Props, {}> {
+class Main extends React.PureComponent  {
   render() {
     return (
       <Result

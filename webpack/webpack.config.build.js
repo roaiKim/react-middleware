@@ -6,13 +6,12 @@ const ForkTSCheckerPlugin = require("fork-ts-checker-webpack-plugin");
 const HTMLPlugin = require("html-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const StylelintPlugin = require("stylelint-webpack-plugin");
-const TSImportPlugin = require("ts-import-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 const config = {
     mode: "production",
-    entry: `${env.src}/index.tsx`,
+    entry: `${env.src}/index.jsx`,
     output: {
         path: env.dist,
         filename: "static/js/[name].[chunkhash:8].js",
@@ -58,15 +57,15 @@ const config = {
     module: {
         rules: [
             {
-                test: /\.(ts|tsx)$/,
+                test: /\.(js|jsx)$/,
                 include: env.src,
-                loader: "ts-loader",
+                loader: "babel-loader",
                 options: {
-                    configFile: env.tsConfig,
-                    transpileOnly: true,
-                    getCustomTransformers: () => ({
-                        before: [TSImportPlugin({libraryName: "antd", libraryDirectory: "es", style: true})],
-                    }),
+                    plugins: [
+                        ["@babel/plugin-proposal-decorators", { "legacy": true }],
+                        ["@babel/plugin-proposal-class-properties", { "loose": true }],
+                        ["@babel/plugin-transform-react-jsx"]
+                    ]
                 },
             },
             {
@@ -116,12 +115,6 @@ const config = {
     plugins: [
         new MiniCSSExtractPlugin({
             filename: "static/css/[name].[contenthash:8].css",
-        }),
-        new ForkTSCheckerPlugin({
-            tsconfig: env.tsConfig,
-            tslint: env.tslintConfig,
-            useTypescriptIncrementalApi: false,
-            workers: ForkTSCheckerPlugin.TWO_CPUS_FREE,
         }),
         new StylelintPlugin({
             configFile: env.stylelintConfig,
