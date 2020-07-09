@@ -1,12 +1,13 @@
 import { Lifecycle, Loading, Module, register } from 'react-basc';
 import { MainService } from 'service/api/MainService';
 import Main from './component';
+import { State } from './type';
 
-const initialState = {
+const initialState: State = {
   user: null,
 };
 
-class MainModule extends Module  {
+class MainModule extends Module<State> {
   @Lifecycle()
   onRegister() {
     this.fetchCurrentuser();
@@ -19,7 +20,7 @@ class MainModule extends Module  {
   }
 
   @Loading('mask')
-  async setCurrentuser(name) {
+  async setCurrentuser(name: string) {
     this.setState({ user: name });
   }
 }

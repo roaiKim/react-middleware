@@ -2,6 +2,8 @@ const webpack = require("webpack");
 const env = require("./env");
 const HTMLPlugin = require("html-webpack-plugin");
 const StylelintPlugin = require("stylelint-webpack-plugin");
+const ForkTSCheckerPlugin = require("fork-ts-checker-webpack-plugin");
+const TSImportPlugin = require("ts-import-plugin");
 
 const config = {
     devServer: {
@@ -9,7 +11,7 @@ const config = {
         historyApiFallback: true
     },
     mode: "development",
-    entry: ["webpack-dev-server/client?http://0.0.0.0:3000", "webpack/hot/dev-server", `${env.src}/index.jsx`],
+    entry: ["webpack-dev-server/client?http://0.0.0.0:3000", "webpack/hot/dev-server", `${env.src}/index.tsx`],
     output: {
         filename: "static/js/[name].js",
         publicPath: "/",
@@ -32,21 +34,16 @@ const config = {
     module: {
         rules: [
             {
-                test: /\.(js|jsx)$/,
-                use: {
-                    loader: "babel-loader",
-                    options: {
-                        presets:[
-                            ['@babel/preset-env']
-                        ],
-                        plugins: [
-                            ["@babel/plugin-proposal-decorators", { "legacy": true }],
-                            ["@babel/plugin-proposal-class-properties", { "loose": true }],
-                            ["@babel/plugin-transform-react-jsx"]
-                        ]
-                    },
-                },
+                test: /\.(ts|tsx)$/,
                 include: env.src,
+                loader: "ts-loader",
+                options: {
+                    configFile: env.tsConfig,
+                    transpileOnly: true,
+                    getCustomTransformers: () => ({
+                        before: [TSImportPlugin({libraryName: "antd", libraryDirectory: "es", style: true})],
+                    }),
+                },
             },
             {
                 test: /\.(css|less)$/,
@@ -84,6 +81,10 @@ const config = {
             context: env.src,
             files: "**/*.less",
             syntax: "less",
+        }),
+        new ForkTSCheckerPlugin({
+            tsconfig: env.tsConfig,
+            eslint: env.eslintConfig,
         }),
         new HTMLPlugin({
             template: `${env.src}/index.html`,

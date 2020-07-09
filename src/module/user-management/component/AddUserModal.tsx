@@ -1,18 +1,30 @@
 import React from 'react';
 import { Form, Input, Button, Modal } from 'antd';
 import './index.less';
+import { Store } from 'rc-field-form/lib/interface.d';
 import { actions } from 'module/user-management';
 import { Encrypt, Decrypt } from 'util/secret';
-  
-class AddUserModal extends React.PureComponent {
-  isEdit;
+import { UserManagement } from 'type/api';
 
-  constructor(props) {
+export interface LoginAJAXRequest {
+  username: string;
+  password: string;
+}
+
+interface Props {
+  closeModal: () => void,
+  initItem: UserManagement | null
+}
+
+class AddUserModal extends React.PureComponent<Props, {}> {
+  isEdit: boolean;
+
+  constructor(props: Props) {
     super(props);
     this.isEdit = !!this.props.initItem;
   }
 
-  submit = (value) => {
+  submit = (value: Store) => {
     console.log('---value------<>', value);
     const encryptValue = Encrypt(value.username);
     console.log('---encryptValue------<>', encryptValue);
@@ -38,19 +50,19 @@ class AddUserModal extends React.PureComponent {
           onFinish={this.submit}
           layout="inline"
         >
-          <Form.Item name="username" initialValue={this.isEdit ? initItem.name : ''} rules={[{ required: true, message: '请输入用户名' }]}>
+          <Form.Item name="username" initialValue={this.isEdit ? initItem!.name : ''} rules={[{ required: true, message: '请输入用户名' }]}>
             <Input size="large" placeholder="用户名" />
           </Form.Item>
 
-          <Form.Item name="username2" initialValue={this.isEdit ? initItem.email : ''} rules={[{ required: true, message: '请输入邮箱' }]}>
+          <Form.Item name="username2" initialValue={this.isEdit ? initItem!.email : ''} rules={[{ required: true, message: '请输入邮箱' }]}>
             <Input size="large" placeholder="邮箱" />
           </Form.Item>
 
-          <Form.Item name="username3" initialValue={this.isEdit ? initItem.nickName : ''} rules={[{ required: true, message: '请输入昵称' }]}>
+          <Form.Item name="username3" initialValue={this.isEdit ? initItem!.nickName : ''} rules={[{ required: true, message: '请输入昵称' }]}>
             <Input size="large" placeholder="昵称" />
           </Form.Item>
 
-          <Form.Item name="username4" initialValue={this.isEdit ? initItem.phone : ''} rules={[{ required: true, message: '请输入手机号' }]}>
+          <Form.Item name="username4" initialValue={this.isEdit ? initItem!.phone : ''} rules={[{ required: true, message: '请输入手机号' }]}>
             <Input size="large" placeholder="手机号" />
           </Form.Item>
 

@@ -17,4 +17,8 @@ export class ModuleLoader {
   static user () {
     return import(/* webpackChunkName: "user" */ 'module/user-management')
   }
+
+  static system () {
+    return import(/* webpackChunkName: "system" */ 'module/system-management')
+  }
 }

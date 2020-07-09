@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LoadingComponent = ({ type }) => (
+const LoadingComponent = ({ type }: {type: boolean}) => (
   <div className={`spinner-wrap spinner-wrap-${type}`}>
     <div className="spinner">
       <div className="double-bounce1" />

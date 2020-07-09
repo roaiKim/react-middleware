@@ -2,12 +2,13 @@ import { Module, register, Lifecycle, Loading } from 'react-basc';
 import { UserService } from 'service/api/UserService';
 import { message } from 'antd';
 import Main from './component';
- 
-const initialState = {
+import { State } from './type';
+
+const initialState: State = {
   userManagement: null,
 };
 
-class MainModule extends Module {
+class MainModule extends Module<State> {
   @Lifecycle()
   @Loading()
   async onRender() {
@@ -21,7 +22,7 @@ class MainModule extends Module {
   }
 
   @Loading()
-  async userFreeze(id) {
+  async userFreeze(id: string) {
     const response = await UserService.userFreeze(id);
     if (response.code === 0) {
       this.fetchUserManagement();
@@ -30,7 +31,7 @@ class MainModule extends Module {
   }
 
   @Loading()
-  async userResetPassword(id) {
+  async userResetPassword(id: string) {
     const response = await UserService.userFreeze(id);
     if (response.code === 0) {
       this.fetchUserManagement();
