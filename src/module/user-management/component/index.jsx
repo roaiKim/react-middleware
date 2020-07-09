@@ -1,32 +1,14 @@
 import React from 'react';
 import { Form, Input, Button, Table } from 'antd';
 import './index.less';
-import { Store } from 'rc-field-form/lib/interface.d';
-import { ColumnsType } from 'antd/lib/table';
-import { UserManagement, FetchListData } from 'type/api';
-import { connect, DispatchProp } from 'react-redux';
-import { RootState } from 'type/state';
+import { connect } from 'react-redux';
 import { actions } from 'module/user-management';
 import { Encrypt, Decrypt } from 'util/secret';
 import { DocTitle } from 'util/decorator';
 import AddUserModal from './AddUserModal';
 
-export interface LoginAJAXRequest {
-  username: string;
-  password: string;
-}
-
-interface Props extends DispatchProp {
-  userList: FetchListData<UserManagement> | null
-}
-
-interface State {
-  show: boolean,
-  userItem: UserManagement | null
-}
-
-class Main extends React.PureComponent<Props, State> {
-  columns: ColumnsType<UserManagement> = [
+class Main extends React.PureComponent {
+  columns = [
     {
       title: '用户ID',
       dataIndex: 'id',
@@ -66,7 +48,7 @@ class Main extends React.PureComponent<Props, State> {
     },
   ];
 
-  constructor(props: Props) {
+  constructor(props) {
     super(props);
     this.state = {
       show: false,
@@ -78,21 +60,21 @@ class Main extends React.PureComponent<Props, State> {
   componentDidMount() {}
 
   // 重置密码
-  resetPassword = (record: UserManagement) => {
+  resetPassword = (record) => {
     this.props.dispatch(actions.userResetPassword(record.id));
   };
 
   // 冻结
-  userFreeze = (record: UserManagement) => {
+  userFreeze = (record) => {
     this.props.dispatch(actions.userFreeze(record.id));
   };
 
   // 编辑
-  userEdit = (record: UserManagement) => {
+  userEdit = (record) => {
     this.setState({ show: true, userItem: record });
   };
 
-  submit = (value: Store) => {
+  submit = (value) => {
     console.log('---value------<>', value);
     const encryptValue = Encrypt(value.username);
     console.log('---encryptValue------<>', encryptValue);
@@ -128,7 +110,7 @@ class Main extends React.PureComponent<Props, State> {
           </Form>
         </div>
         <div className="ro-user-mangagement-body">
-          <Table rowKey="id" columns={this.columns} dataSource={userList?.list} />
+          <Table rowKey="id" columns={this.columns} dataSource={userList && userList.list} />
         </div>
         {show && <AddUserModal initItem={userItem} closeModal={this.closeModal} />}
       </div>
@@ -136,7 +118,7 @@ class Main extends React.PureComponent<Props, State> {
   }
 }
 
-const mapStateToProps = (state: RootState) => ({
+const mapStateToProps = (state) => ({
   userList: state.app.userManagement.userManagement,
 });
 

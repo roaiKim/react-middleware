@@ -1,8 +1,7 @@
 import { ajax } from 'react-basc'
-import {HomeAPIResponse , FetchListData, SystemManagement} from 'type/api'
 
 export class SystemService {
-  static fetchUserManagement (): Promise<HomeAPIResponse<FetchListData<SystemManagement>>> {
+  static fetchUserManagement () {
     return new Promise((resolve, reject) => {
       const delay = Math.random() * 1000 + 900
       setTimeout(resolve, delay, {
@@ -40,7 +39,7 @@ export class SystemService {
     })
   }
 
-  static userFreeze (id: string): Promise<HomeAPIResponse<{}>> {
+  static userFreeze (id){
     return new Promise((resolve, reject) => {
       const delay = Math.random() * 1000 + 900
       setTimeout(resolve, delay, {

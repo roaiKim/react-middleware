@@ -1,14 +1,13 @@
 import { Module, register } from 'react-basc';
 import Main from './component';
-import { State } from './type';
 
-const initialState: State = {
-  user: null,
-};
+class MainModule extends Module {
+  pushHistoryToHome() {
+    this.setHistory('/');
+  }
+}
 
-class MainModule extends Module<{}> { }
-
-const module = register(new MainModule('login', initialState));
+const module = register(new MainModule('noFound', {}));
 
 export const actions = module.getActions();
 export const MainComponent = module.attachLifecycle(Main);
