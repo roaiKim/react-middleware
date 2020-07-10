@@ -42,7 +42,8 @@ const config = {
                         plugins: [
                             ["@babel/plugin-proposal-decorators", { "legacy": true }],
                             ["@babel/plugin-proposal-class-properties", { "loose": true }],
-                            ["@babel/plugin-transform-react-jsx"]
+                            ["@babel/plugin-transform-react-jsx"],
+                            ["import", { "libraryName": "antd", "style": true }]
                         ]
                     },
                 },

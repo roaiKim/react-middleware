@@ -58,15 +58,21 @@ const config = {
         rules: [
             {
                 test: /\.(js|jsx)$/,
-                include: env.src,
-                loader: "babel-loader",
-                options: {
-                    plugins: [
-                        ["@babel/plugin-proposal-decorators", { "legacy": true }],
-                        ["@babel/plugin-proposal-class-properties", { "loose": true }],
-                        ["@babel/plugin-transform-react-jsx"]
-                    ]
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets:[
+                            ['@babel/preset-env']
+                        ],
+                        plugins: [
+                            ["@babel/plugin-proposal-decorators", { "legacy": true }],
+                            ["@babel/plugin-proposal-class-properties", { "loose": true }],
+                            ["@babel/plugin-transform-react-jsx"],
+                            ["import", { "libraryName": "antd", "style": true }]
+                        ]
+                    },
                 },
+                include: env.src,
             },
             {
                 test: /\.(css|less)$/,

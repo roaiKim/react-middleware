@@ -1,4 +1,5 @@
-// type HandlerDecorator = (target: object, propertyKey: string, descriptor: TypedPropertyDescriptor<ActionHandler>) => TypedPropertyDescriptor<ActionHandler>;
+import { createActionHandlerDecorator } from 'react-basc';
+import { createPromisedConfirmation } from 'util/ui/modal';
 
 export function DocTitle(title = '\u200E') {
   return (target, propertyKey, descriptor) => {
@@ -10,4 +11,13 @@ export function DocTitle(title = '\u200E') {
     };
     return descriptor;
   };
+}
+
+export function WithConfirm(text) {
+  return createActionHandlerDecorator(async (handler) => {
+    const result = await createPromisedConfirmation(text);
+    if (result === 'ok') {
+      handler();
+    }
+  });
 }
