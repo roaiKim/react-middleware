@@ -1,9 +1,9 @@
 import React from 'react';
 import { Form, Input, Button, Modal } from 'antd';
 import './index.less';
-import { actions } from 'module/user-management';
+// import { actions } from 'module/user-management';
 import { Encrypt, Decrypt } from 'util/secret';
-  
+
 class AddUserModal extends React.PureComponent {
   isEdit;
 
@@ -18,6 +18,7 @@ class AddUserModal extends React.PureComponent {
     console.log('---encryptValue------<>', encryptValue);
     const decryptValue = Decrypt(encryptValue);
     console.log('---decryptValue------<>', decryptValue);
+    console.error('---decryptValue------<>', decryptValue);
   };
 
   render() {

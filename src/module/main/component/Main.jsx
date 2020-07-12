@@ -4,8 +4,7 @@ import { Route, async } from 'react-basc';
 import { ModuleLoader } from 'service/ModuleLoader';
 import MenuComponent from './Menu';
 
-import {MainComponent} from "module/user-management"
-// const User = async(ModuleLoader.user, 'MainComponent');
+const User = async(ModuleLoader.user, 'MainComponent');
 const System = async(ModuleLoader.system, 'MainComponent');
 const NoFound = async(ModuleLoader.noFound, 'MainComponent');
 
@@ -18,7 +17,7 @@ class MainLayout extends React.PureComponent {
         </section>
         <section className="ro-main-wrap">
           <Switch>
-            <Route path="/(user-management)?" component={MainComponent} />
+            <Route path="/(user-management)?" component={User} />
             <Route path="/system-management" component={System} />
             <Route component={NoFound} />
           </Switch>

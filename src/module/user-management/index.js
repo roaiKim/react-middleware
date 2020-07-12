@@ -3,7 +3,7 @@ import { UserService } from 'service/api/UserService';
 import { message } from 'antd';
 import { WithConfirm } from 'util/decorator';
 import Main from './component';
- 
+
 const initialState = {
   userManagement: null,
 };

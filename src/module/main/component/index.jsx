@@ -7,14 +7,14 @@ import { ConfigProvider } from 'antd';
 import LoadingComponent from './LoadingComponent';
 import MainLayout from './Main';
 import './index.less';
- 
+
 // const login = async(ModuleLoader.login, 'MainComponent');
 const login = async(ModuleLoader.login, 'MainComponent');
 
 class Component extends React.PureComponent {
   render() {
     const { showGlobalLoading, currentUser, showMaskLoading } = this.props;
-    
+
     return (
       <ConfigProvider input={{ autoComplete: 'off' }}>
         <main>
