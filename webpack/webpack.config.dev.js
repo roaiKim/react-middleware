@@ -34,20 +34,29 @@ const config = {
         rules: [
             {
                 test: /\.(js|jsx)$/,
-                use: {
-                    loader: "babel-loader",
-                    options: {
-                        presets:[
-                            ['@babel/preset-env']
-                        ],
-                        plugins: [
-                            ["@babel/plugin-proposal-decorators", { "legacy": true }],
-                            ["@babel/plugin-proposal-class-properties", { "loose": true }],
-                            ["@babel/plugin-transform-react-jsx"],
-                            ["import", { "libraryName": "antd", "style": true }]
-                        ]
+                use: [
+                    {
+                        loader: "babel-loader",
+                        options: {
+                            presets:[
+                                ['@babel/preset-env']
+                            ],
+                            plugins: [
+                                ["@babel/plugin-proposal-decorators", { "legacy": true }],
+                                ["@babel/plugin-proposal-class-properties", { "loose": true }],
+                                ["@babel/plugin-transform-react-jsx"],
+                                ["import", { "libraryName": "antd", "style": true }]
+                            ]
+                        },
                     },
-                },
+                    {
+                        loader: 'eslint-loader',
+                        options: {
+                            failOnError: true,
+                            failOnWarning: true
+                        }
+                    }
+                ],
                 include: env.src,
             },
             {
