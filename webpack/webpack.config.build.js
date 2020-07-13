@@ -2,7 +2,6 @@ const webpack = require("webpack");
 const env = require("./env");
 const autoprefixer = require("autoprefixer");
 const MiniCSSExtractPlugin = require("mini-css-extract-plugin");
-const ForkTSCheckerPlugin = require("fork-ts-checker-webpack-plugin");
 const HTMLPlugin = require("html-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const StylelintPlugin = require("stylelint-webpack-plugin");
