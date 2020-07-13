@@ -12,6 +12,7 @@ module.exports = {
     },
     rules: {
         "import/no-cycle": "off",
+        "no-console": ["error", { "allow": ["warn", "error"] }],
         "import/prefer-default-export": "off",
         "import/no-extraneous-dependencies": "off",
         "@typescript-eslint/ban-types": "off",
