@@ -8,7 +8,8 @@ const TSImportPlugin = require("ts-import-plugin");
 const config = {
     devServer: {
         port: 3000,
-        historyApiFallback: true
+        historyApiFallback: true,
+        hot: true
     },
     mode: "development",
     entry: ["webpack-dev-server/client?http://0.0.0.0:3000", "webpack/hot/dev-server", `${env.src}/index.tsx`],
