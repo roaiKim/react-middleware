@@ -26,10 +26,6 @@ class AddUserModal extends React.PureComponent<Props, {}> {
 
   submit = (value: Store) => {
     console.log('---value------<>', value);
-    const encryptValue = Encrypt(value.username);
-    console.log('---encryptValue------<>', encryptValue);
-    const decryptValue = Decrypt(encryptValue);
-    console.log('---decryptValue------<>', decryptValue);
   };
 
   render() {

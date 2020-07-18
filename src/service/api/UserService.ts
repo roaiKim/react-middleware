@@ -49,8 +49,4 @@ export class UserService {
       })
     })
   }
-
-  /* static changeMoneyPassword(request: ChangePasswordAPIRequest): Promise<void> {
-        return ajax("POST", "/account/money-password", {}, request);
-    } */
 }
