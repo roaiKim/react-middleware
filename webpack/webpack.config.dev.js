@@ -7,12 +7,20 @@ const TSImportPlugin = require("ts-import-plugin");
 
 const config = {
     devServer: {
-        port: 3000,
+        port: 3100,
         historyApiFallback: true,
-        hot: true
+        hot: true,
+        proxy: [
+            {
+                context: ["/ajax", ""],
+                target: "http://127.0.0.1:3000/",
+                secure: false,
+                changeOrigin: true,
+            },
+        ],
     },
     mode: "development",
-    entry: ["webpack-dev-server/client?http://0.0.0.0:3000", "webpack/hot/dev-server", `${env.src}/index.tsx`],
+    entry: ["webpack-dev-server/client?http://0.0.0.0:3100", "webpack/hot/dev-server", `${env.src}/index.tsx`],
     output: {
         filename: "static/js/[name].js",
         publicPath: "/",

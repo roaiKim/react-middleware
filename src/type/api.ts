@@ -36,3 +36,8 @@ export interface SystemManagement {
   array: string;
   status: boolean;
 }
+
+export interface UserLoginRequest {
+  username: string;
+  password: string;
+}
