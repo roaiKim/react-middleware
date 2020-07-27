@@ -10,14 +10,14 @@ const config = {
         port: 3100,
         historyApiFallback: true,
         hot: true,
-        proxy: [
+        /* proxy: [
             {
                 context: ["/ajax", ""],
                 target: "http://127.0.0.1:3000/",
                 secure: false,
                 changeOrigin: true,
             },
-        ],
+        ], */
     },
     mode: "development",
     entry: ["webpack-dev-server/client?http://0.0.0.0:3100", "webpack/hot/dev-server", `${env.src}/index.tsx`],
