@@ -3,7 +3,7 @@ import { Result, Button } from 'antd';
 import { actions } from 'module/404';
 import './index.less';
 
-class Main extends React.PureComponent  {
+class Main extends React.PureComponent {
   render() {
     return (
       <Result

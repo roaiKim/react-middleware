@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Input, Button, Modal } from 'antd';
 import './index.less';
 // import { actions } from 'module/user-management';
-import { Encrypt, Decrypt } from 'util/secret';
+// import { Encrypt, Decrypt } from 'util/secret';
 
 class AddUserModal extends React.PureComponent {
   isEdit;
@@ -13,12 +13,13 @@ class AddUserModal extends React.PureComponent {
   }
 
   submit = (value) => {
+    // eslint-disable-next-line no-console
     console.log('---value------<>', value);
-    const encryptValue = Encrypt(value.username);
+    /* const encryptValue = Encrypt(value.username);
     console.log('---encryptValue------<>', encryptValue);
     const decryptValue = Decrypt(encryptValue);
     console.log('---decryptValue------<>', decryptValue);
-    console.error('---decryptValue------<>', decryptValue);
+    console.error('---decryptValue------<>', decryptValue); */
   };
 
   render() {

@@ -1,12 +1,12 @@
 import React from 'react';
 import { Form, Input, Button, Table, Tag, Tooltip } from 'antd';
 import './index.less';
-import { ColumnsType } from 'antd/lib/table';
-import { connect, DispatchProp } from 'react-redux';
+// import { ColumnsType } from 'antd/lib/table';
+import { connect } from 'react-redux';
 import { actions } from 'module/system-management';
 import { DocTitle } from 'util/decorator';
 import AddSystemModal from './AddSystemModal';
- 
+
 class Main extends React.PureComponent {
   columns = [
     {
@@ -118,7 +118,7 @@ class Main extends React.PureComponent {
           </Form>
         </div>
         <div className="ro-system-mangagement-body">
-          <Table rowKey="id" columns={this.columns} dataSource={systemList && systemList.list } pagination={false} />
+          <Table rowKey="id" columns={this.columns} dataSource={systemList && systemList.list} pagination={false} />
         </div>
         {show && <AddSystemModal initItem={systemItem} closeModal={this.closeModal} />}
       </div>

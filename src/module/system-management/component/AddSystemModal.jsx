@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Input, Button, Modal } from 'antd';
 import './index.less';
 import { actions } from 'module/system-management';
-import {connect } from 'react-redux';
+import { connect } from 'react-redux';
 
 class AddSystemModal extends React.PureComponent {
   isEdit;

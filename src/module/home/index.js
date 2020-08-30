@@ -3,6 +3,10 @@ import Main from './component';
 
 class MainModule extends Module {}
 
+const initialState = {
+
+};
+
 const module = register(new MainModule('home', initialState));
 export const actions = module.getActions();
 export const MainComponent = module.attachLifecycle(Main);

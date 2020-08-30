@@ -6,7 +6,7 @@ const initialState = {
   user: null,
 };
 
-class MainModule extends Module  {
+class MainModule extends Module {
   @Lifecycle()
   onRegister() {
     this.fetchCurrentuser();

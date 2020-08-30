@@ -3,7 +3,7 @@ import { Form, Input, Button, Checkbox } from 'antd';
 import './index.less';
 import { connect } from 'react-redux';
 import { actions } from 'module/main';
- 
+
 class Main extends React.PureComponent {
   submit = (value) => {
     //

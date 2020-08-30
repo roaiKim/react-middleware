@@ -3,7 +3,6 @@ import { Form, Input, Button, Table } from 'antd';
 import './index.less';
 import { connect } from 'react-redux';
 import { actions } from 'module/user-management';
-import { Encrypt, Decrypt } from 'util/secret';
 import { DocTitle } from 'util/decorator';
 import AddUserModal from './AddUserModal';
 
@@ -75,11 +74,12 @@ class Main extends React.PureComponent {
   };
 
   submit = (value) => {
+    // eslint-disable-next-line no-console
     console.log('---value------<>', value);
-    const encryptValue = Encrypt(value.username);
+    /* const encryptValue = Encrypt(value.username);
     console.log('---encryptValue------<>', encryptValue);
     const decryptValue = Decrypt(encryptValue);
-    console.log('---decryptValue------<>', decryptValue);
+    console.log('---decryptValue------<>', decryptValue); */
   };
 
   closeModal = () => {

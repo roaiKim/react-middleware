@@ -6,6 +6,7 @@ export function DocTitle(title = '\u200E') {
     const fn = descriptor.value;
     // eslint-disable-next-line no-param-reassign
     descriptor.value = function value(...args) {
+      // eslint-disable-next-line no-undef
       document.title = title;
       fn.apply(this, ...args);
     };
